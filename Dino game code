@@ -1,0 +1,97 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int cacto_x = 10;
+int hero_x = 1;
+const int button_pin = 7;
+int points = 0;
+int velocity = 150;
+unsigned long tempoUltimoPulo = 0;
+int tempoCooldown = 250;          
+byte herocustom[8] = {
+  B00111,
+  B00101,
+  B00111,
+  B10100,
+  B11111,
+  B11000,
+  B01010,
+  B01010
+};
+
+byte cactocustom[8] = {
+  B01110,
+  B01110,
+  B01110,
+  B11111,
+  B11111,
+  B01110,
+  B01100,
+  B01100
+};
+
+void setup() {
+  pinMode(button_pin, INPUT_PULLUP);
+  lcd.begin(16, 2);
+  lcd.createChar(0, herocustom);
+  lcd.createChar(1, cactocustom);
+}
+
+void loop() {
+ unsigned long tempoAtual = millis();
+  int buttonstate = digitalRead(button_pin);
+  lcd.setCursor(7, 0);
+  lcd.print("SCORE:");
+  lcd.print(points);
+  if (buttonstate == LOW && (tempoAtual - tempoUltimoPulo >= tempoCooldown)) { 
+    tempoUltimoPulo = tempoAtual;
+    lcd.setCursor(1, 1); 
+    lcd.print(" ");
+    lcd.setCursor(1, 0);
+    lcd.write(byte(0));
+  } else {
+    lcd.setCursor(1, 0); 
+    lcd.print(" ");       
+    lcd.setCursor(1, 1); 
+    lcd.write(byte(0)); 
+  } 
+
+ 
+  lcd.setCursor(cacto_x, 1);
+  lcd.print(" ");
+  
+  cacto_x = cacto_x - 1;
+  if (cacto_x < 0) {
+    cacto_x = 15; 
+    points = points + 1;
+    if (velocity > 50) {velocity = velocity - 10;}
+  } 
+  
+  lcd.setCursor(cacto_x, 1);
+  lcd.write(byte(1));
+
+  // 
+  if (cacto_x == hero_x && buttonstate == HIGH ) {
+    delay(200); 
+    lcd.clear();
+    lcd.setCursor(3, 0);
+    lcd.print("GAME OVER!");
+    lcd.setCursor(0, 1);
+    lcd.print("Press the button");
+    points = 0;
+    velocity = 0;
+
+    delay(500); 
+
+    while (digitalRead(button_pin) == HIGH) {
+     
+    }
+
+  
+    cacto_x = 15;
+    hero_x = 1;
+    lcd.clear();
+  }
+
+  delay(120);
+} 
