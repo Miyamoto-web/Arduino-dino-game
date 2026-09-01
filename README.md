@@ -15,4 +15,4 @@ link of the demo and wiring: https://wokwi.com/projects/470366053058804737
 
 ## Completed Build
 
-![Arduino Dino Game Setup](https://drive.google.com/file/d/1aDm6DFf3szGKGTS6upUv5ti-vQPv6Bhl/view?usp=drivesdk)
+![Arduino Dino Game Setup](WhatsApp Image 2026-09-01 at 20.25.26.jpeg)
