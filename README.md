@@ -12,3 +12,7 @@ Components Used
 * Game Over screen with button restart functionality.
 
 link of the demo and wiring: https://wokwi.com/projects/470366053058804737
+
+## Completed Build
+
+![Arduino Dino Game Setup](nome_da_sua_foto.jpg)
