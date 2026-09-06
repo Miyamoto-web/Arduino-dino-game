@@ -16,3 +16,5 @@ link of the demo and wiring: https://wokwi.com/projects/470366053058804737
 ## Completed Build
 
 ![Arduino Dino Game Setup](WhatsApp%20Image%202026-09-01%20at%2020.25.26.jpeg)
+## Enclosure 3D
+- model of the custom case Arduino/LCD  in the format `.stl`.
